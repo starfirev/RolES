@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RolESBackend", "RolESBackend\RolESBackend.csproj", "{BD268D40-48AA-48BC-BEDA-F4516477D24D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BD268D40-48AA-48BC-BEDA-F4516477D24D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD268D40-48AA-48BC-BEDA-F4516477D24D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD268D40-48AA-48BC-BEDA-F4516477D24D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD268D40-48AA-48BC-BEDA-F4516477D24D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
