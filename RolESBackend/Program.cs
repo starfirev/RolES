@@ -1,4 +1,5 @@
 using System.Data;
+using RolESBackend.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,9 +28,10 @@ app.MapGet("/", () => // Metodo sem nome
         });
 });
 
-app.MapPost("/usuario", () =>
+app.MapPost("/usuario", (CadastroUsuarioDto requestBody) =>
 {
-    return Results.Created();
+    
+    return Results.Ok(requestBody);
 });
 
 app.Run();
