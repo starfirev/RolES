@@ -1,10 +1,14 @@
 using System.Data;
+using RolESBackend.Dados;
 using RolESBackend.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddOpenApi();
+
+// Cadastro de serviço Customizados 
+builder.Services.AddSingleton<BdConexao>();
 
 var app = builder.Build();
 
