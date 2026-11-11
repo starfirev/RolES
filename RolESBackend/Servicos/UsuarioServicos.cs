@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using RolESBackend.Dados;
 using RolESBackend.DTOs;
+using RolESBackend.Modelos;
 
 namespace RolESBackend.Servicos;
 
@@ -23,4 +24,30 @@ public class UsuarioServicos(BdConexao conexao)
         return linhasAfetadas;
 
     }
+
+    public async Task<Usuario?> BuscarPorEmailAsync(string emailBuscado)
+    {
+        var sql = "SELECT id, nome, senha FROM usuarios WHERE email = @email";
+
+        var mySqlComando = new MySqlCommand(sql, await conexao.CriarConexaoAsync());
+
+        mySqlComando.Parameters.AddWithValue("@email", emailBuscado);
+
+        var leitor = await mySqlComando.ExecuteReaderAsync();
+
+        if (await leitor.ReadAsync())
+        {
+            var usuarioEncontrado = new Usuario
+            {
+                id = leitor.GetInt32(leitor.GetOrdinal("id")),
+                Nome = leitor["nome"].ToString() ?? string.Empty,
+                Senha = leitor["senha"].ToString() ?? string.Empty
+            };
+
+            return usuarioEncontrado;
+        }
+
+        return null;
+    }
 }
+

@@ -1,5 +1,6 @@
 
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using RolESBackend.Dados;
 using RolESBackend.DTOs;
 using RolESBackend.Servicos;
@@ -29,19 +30,19 @@ app.MapGet("/", () => // Metodo sem nome
 {
     var dataResposta = DateTime.UtcNow;
     return Results.Ok(new 
-        {   Mensagem ="", 
+        {   Mensagem ="Servidor está online.", 
             Data = dataResposta
             
         });
 });
 
-app.MapPost("/usuario", async (CadastroUsuarioDto requestBody, UsuarioServicos uServicos) =>
+app.MapPost("/usuario", async (CadastroUsuarioDto requestBody, UsuarioServicos uServicos) => // O 'app' servidor'Map' é o localiza o servidor e o 'usuário é a rota.
 {
 
     try
     {
         var linhasAfetadas = await uServicos.AdicionarAsync(requestBody);
-        
+
         if (linhasAfetadas > 0) return Results.Created();
 
         return Results.Conflict(new
@@ -62,6 +63,34 @@ app.MapPost("/usuario", async (CadastroUsuarioDto requestBody, UsuarioServicos u
         return Results.InternalServerError(); // O usuario recebe o erro de forma mais clara.
     }
 });
+
+app.MapPost("/login", async (LoginUsuarioDto corpoRequisicao, UsuarioServicos uServicos) => 
+{
+
+    try
+    {
+        var usuarioEncontrado  = await uServicos.BuscarPorEmailAsync(corpoRequisicao.Email);
+
+        if (usuarioEncontrado == null) return Results.NotFound(new
+        {
+            Mensagem = "O usuário não foi encontrado."
+        });
+        if (corpoRequisicao.Senha != usuarioEncontrado.Senha)
+            return Results.BadRequest(new
+            {
+                Mensagem = "Email/senha estão incorretos."
+            });
+        return Results.Ok();
+    }
+
+    catch
+    {
+        return Results.InternalServerError();
+    }
+});
+
+
+
 
 app.Run();
 
