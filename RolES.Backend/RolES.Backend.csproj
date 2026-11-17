@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>2c335197-2f96-42bc-a687-9a66f5d2c5c6</UserSecretsId>
+        <RootNamespace>RolESBackend</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

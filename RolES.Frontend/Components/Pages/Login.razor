@@ -1,0 +1,41 @@
+﻿@page "/login"
+@using RolES.Frontend.Modelos
+@rendermode InteractiveServer 
+@inject HttpClient http
+@inject NavigationManager navegador 
+<h1>Login</h1>
+
+<form @onsubmit="EnviarDadosParaApi">
+    <label>
+        E-mail
+        <input type="email" required @bind-value="dadosEnvio.Email"/>
+    </label>
+    
+    <label>
+        Senha
+        <input type="password" required autocomplete="current-password" @bind-value="dadosEnvio.Senha"/>
+    </label>
+    
+    <button type="submit">Entrar na Conta</button>
+</form>
+
+
+@code {
+    private LoginModelo dadosEnvio = new();
+
+    private async Task EnviarDadosParaApi()
+    {
+        var resposta =  await http.PostAsJsonAsync("http://senac47278.local/login", dadosEnvio);
+
+        if (resposta.IsSuccessStatusCode)
+        {
+            navegador.NavigateTo("/perfil");
+        }
+        else
+        {
+            Console.WriteLine("Login mal sucedido!");
+        }
+    }
+}
+
+
