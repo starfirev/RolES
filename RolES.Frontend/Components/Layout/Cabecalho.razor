@@ -1,35 +1,34 @@
-﻿<header calss="navbar navbar-expand-lg bg-body-teritiary">
+﻿<header class="navbar navbar-expand-lg bg-body-teritiary justify-content-between px-3 gap-5">
     <div id="logo-cabecalho">
         <a class="navbar-brand fs-1 " href="/">RolES</a>
     </div>
     
-    <div id="barra-busca">
-        <span>🔍</span>
-        <input type="search" />
-    </div>
+    <div class="container justify-content-start w-50">
+    <form id="barra-busca" class="d-flex input-group">
+        <span class="input-group-text">🔍</span>
+        <input class="form-control" type="search" placeholder="Buscar evento..." />
+    </form>
     
-    <div id="filtro-localizacao">
-        <span>📍</span>
-        <select>
+    <form id="filtro-localizacao" class="d-flex input-group">
+        <span class="input-group-text">📍</span>
+        <select class="form-select">
             <option>Todos os lugares</option>
             <option>Serra</option>
             <option>Vitória</option>
         </select>
+    </form>
+    </div>
+    
+    <div id="links-navegacao" class="d-flex gap-4 justify-content-evenly">
+        <NavLink class="nav-link" href="#criar_evento">Criar Evento</NavLink>
+        <NavLink class="nav-link" href="#agenda">Agenda</NavLink>
+        <NavLink class="nav-link" href="#meus_eventos">Meus Eventos</NavLink>
 
     </div>
     
-    <div id="links-navegacao">
-        <NavLink href="#criar_evento">Criar Evento</NavLink>
-        <NavLink href="#agenda">Agenda</NavLink>
-        <NavLink href="#meus_eventos">Meus Eventos</NavLink>
-
-    </div>
-    
-    <div id="botao-entar">
+    <div id="botao-entar" class="btn btn-primary">
         Entrar
 
     </div>
-    
-    
 
 </header>
